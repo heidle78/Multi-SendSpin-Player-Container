@@ -1,20 +1,20 @@
 # Multi-Room Audio (Dev)
 
 <!-- VERSION_INFO_START -->
-## Development Build: sha-0e83da6
+## Development Build: sha-f07c6b3
 
-**Features in Development** (targeting 5.0 release)
+**Current Dev Build Changes** (recent)
 
-- **12V Trigger Relay Control** - Automatic amplifier power management via USB HID, FTDI, and Modbus relay boards
-- **Player Mute Button** - Bidirectional mute sync with Music Assistant
-- **Now Playing Info** - Track title, artist, album in Player Details modal
-- **Device Capabilities** - Shows supported sample rates, bit depths, channels
-- **Volume Persistence** - Volume survives container restarts
-- **Reconnection UX** - Startup progress overlay, WaitingForServer state, auto-reconnect
-- **Sync Improvements** - Anti-oscillation debounce, latency lock-in
-- **Mono Output** - Remap sinks support single-channel output
-- **International Names** - Unicode player names (emojis, CJK, etc.)
-- **SendSpin.SDK 6.1.1** - Major protocol improvements
+- Merge pull request #175 from scyto/dev
+- Fix off-profile detection for Intel HDA combined duplex profiles (#139)
+- Fix race condition in device reconnection causing duplicate restarts (#138)
+- Fix off-profile device detection to ignore IsAvailable flag (#137)
+- Show off-profile cards in device selector (#136)
+- Fix player state for empty device and diagnostics device matching (#135)
+- Merge pull request #173 from scyto/dev
+- Fix diagnostics summary including custom sinks in audio devices (#134)
+- Fix vertical alignment of mute button with slider (#133)
+- Fix duplicate toast messages on server reconnection (#132)
 
 > WARNING: This is a development build. For stable releases, use the stable add-on.
 <!-- VERSION_INFO_END -->
