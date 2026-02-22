@@ -111,6 +111,14 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Relevant Logs (optional)
+      label: Paste Logs (optional)
       description: Paste any relevant logs from Settings > Logs in the web UI
       render: shell
+
+  - type: textarea
+    id: log-file
+    attributes:
+      label: Upload Log File (optional)
+      description: |
+        Alternatively, download the log file from Settings > Logs and drag it into this field.
+        You can also attach screenshots here.
