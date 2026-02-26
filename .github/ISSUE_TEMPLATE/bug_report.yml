@@ -1,5 +1,6 @@
 name: Bug Report
 description: Report a bug or issue with Multi-Room Audio
+title: "[bug] "
 labels: ["bug"]
 body:
   - type: markdown
@@ -25,7 +26,15 @@ body:
       description: |
         Go to Settings > System > Repairs > ⋮ > System Information
         Copy the Core, Supervisor, and Operating System versions.
-        (Skip if not using Home Assistant)
+        (Enter N/A if not using Home Assistant)
+      placeholder: |
+        ```
+        Core: 2025.2.0
+        Supervisor: 2025.2.1
+        Operating System: 14.2
+        ```
+    validations:
+      required: true
 
   - type: markdown
     attributes:
