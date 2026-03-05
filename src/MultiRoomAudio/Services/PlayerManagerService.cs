@@ -138,14 +138,14 @@ public class PlayerManagerService : IAsyncDisposable, IDisposable
     /// Local circular buffer capacity for decompressed PCM audio (in milliseconds).
     ///
     /// This is the TimedAudioBuffer size - how much decoded audio we can hold locally.
-    /// Aligned with SDK v7.2.0 default of 30 seconds. Provides ~30s of uninterrupted
-    /// playback during network hiccups and lightweight reconnects. At 48kHz stereo
-    /// float32 this is approximately 11MB per player.
+    /// Initialized from EnvironmentService.BufferSeconds (default 30 seconds). Provides
+    /// uninterrupted playback during network hiccups and lightweight reconnects. At 48kHz
+    /// stereo float32, 30s is approximately 11MB per player.
     ///
     /// Note: This is DIFFERENT from ServerAnnouncedBufferCapacityBytes which controls
     /// how far ahead the server sends compressed audio.
     /// </summary>
-    private const int LocalBufferCapacityMs = 30_000;
+    private readonly int _localBufferCapacityMs;
 
     /// <summary>
     /// Target buffer level for playback readiness (in milliseconds).
@@ -154,7 +154,7 @@ public class PlayerManagerService : IAsyncDisposable, IDisposable
     /// Lower values = faster playback start but more sensitive to jitter.
     ///
     /// This is NOT a buffer capacity - it's a threshold for when to START playing.
-    /// The actual buffer can hold much more (see LocalBufferCapacityMs).
+    /// The actual buffer can hold much more (see _localBufferCapacityMs).
     ///
     /// With SDK's HasMinimalSync (2 clock measurements), typical startup is 300-500ms.
     /// </summary>
@@ -467,6 +467,9 @@ public class PlayerManagerService : IAsyncDisposable, IDisposable
         _serviceProvider = serviceProvider;
         _versionService = versionService;
         _subscriptionService = subscriptionService;
+        _localBufferCapacityMs = environment.BufferSeconds * 1000;
+        _logger.LogInformation("Audio buffer capacity: {BufferMs}ms ({BufferSeconds}s)",
+            _localBufferCapacityMs, environment.BufferSeconds);
         _serverDiscovery = new MdnsServerDiscovery(
             loggerFactory.CreateLogger<MdnsServerDiscovery>());
 
@@ -966,7 +969,7 @@ public class PlayerManagerService : IAsyncDisposable, IDisposable
                 var buffer = new TimedAudioBuffer(
                     format,
                     sync,
-                    bufferCapacityMs: LocalBufferCapacityMs,
+                    bufferCapacityMs: _localBufferCapacityMs,
                     syncOptions: PulseAudioSyncOptions);
                 buffer.TargetBufferMilliseconds = PlaybackStartThresholdMs;
                 return buffer;
