@@ -231,6 +231,13 @@ public class PlayerManagerService : IAsyncDisposable, IDisposable
     private const int MaxReconnectAttempts = 0; // Unlimited - keep trying forever
 
     /// <summary>
+    /// Maximum time to attempt lightweight reconnect before falling back to full teardown.
+    /// During lightweight reconnect, the pipeline/buffer/player stay alive so audio
+    /// continues playing from the 30s buffer while the WebSocket reconnects.
+    /// </summary>
+    private static readonly TimeSpan LightweightReconnectTimeout = TimeSpan.FromSeconds(60);
+
+    /// <summary>
     /// Grace period after connection during which volume updates from MA are ignored.
     /// This allows the startup volume to "win" the initial sync battle with Music Assistant.
     /// </summary>
@@ -385,6 +392,7 @@ public class PlayerManagerService : IAsyncDisposable, IDisposable
         public AudioDevice? CachedDevice { get; set; }
         public string? ErrorMessage { get; set; }
         public DateTime? ConnectedAt { get; set; }
+        public DateTime? DisconnectedAt { get; set; }  // For lightweight reconnect window tracking
         public int InitialVolume { get; init; } // Store initial volume to detect resets
         public long SamplesPlayed { get; set; }
         public bool? LastConfirmedMuted { get; set; } // Track last mute state echoed to server
