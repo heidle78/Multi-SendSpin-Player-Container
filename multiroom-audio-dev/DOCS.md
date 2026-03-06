@@ -1,10 +1,12 @@
 # Multi-Room Audio (Dev)
 
 <!-- VERSION_INFO_START -->
-## Development Build: sha-ea1e014
+## Development Build: sha-77b5a17
 
 **Current Dev Build Changes** (recent)
 
+- Merge pull request #199 from scyto/dev
+- feat: add mono output mode to wizard remap sink UI (#140)
 - Merge pull request #198 from scyto/bug/fix-ingress-buffer-fetch
 - fix: use relative paths for buffer settings fetch calls
 - Merge pull request #197 from chrisuthe/task/feat-adjustable-buffer
@@ -13,8 +15,6 @@
 - feat: add System Settings modal with buffer size slider
 - feat: add GET/PUT /api/settings/buffer endpoint
 - feat: add GlobalSettings model and settings.yaml persistence
-- feat: use configurable buffer size from EnvironmentService
-- feat: add BufferSeconds property to EnvironmentService
 
 > WARNING: This is a development build. For stable releases, use the stable add-on.
 <!-- VERSION_INFO_END -->
