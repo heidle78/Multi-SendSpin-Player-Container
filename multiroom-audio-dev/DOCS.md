@@ -1,10 +1,12 @@
 # Multi-Room Audio (Dev)
 
 <!-- VERSION_INFO_START -->
-## Development Build: sha-0a8bf69
+## Development Build: sha-ea1e014
 
 **Current Dev Build Changes** (recent)
 
+- Merge pull request #198 from scyto/bug/fix-ingress-buffer-fetch
+- fix: use relative paths for buffer settings fetch calls
 - Merge pull request #197 from chrisuthe/task/feat-adjustable-buffer
 - fix: convert PulseAudio config files to LF line endings
 - docs: add BUFFER_SECONDS to environment variables table
@@ -13,8 +15,6 @@
 - feat: add GlobalSettings model and settings.yaml persistence
 - feat: use configurable buffer size from EnvironmentService
 - feat: add BufferSeconds property to EnvironmentService
-- docs: add adjustable buffer implementation plan
-- docs: add adjustable buffer size design document
 
 > WARNING: This is a development build. For stable releases, use the stable add-on.
 <!-- VERSION_INFO_END -->
