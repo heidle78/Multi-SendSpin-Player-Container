@@ -1,10 +1,12 @@
 # Multi-Room Audio (Dev)
 
 <!-- VERSION_INFO_START -->
-## Development Build: sha-77b5a17
+## Development Build: sha-bf1eb98
 
 **Current Dev Build Changes** (recent)
 
+- Merge pull request #200 from chrisuthe/chore/SDK-Update-730
+- chore: upgrade SendSpin.SDK 7.2.1 -> 7.3.0
 - Merge pull request #199 from scyto/dev
 - feat: add mono output mode to wizard remap sink UI (#140)
 - Merge pull request #198 from scyto/bug/fix-ingress-buffer-fetch
@@ -13,8 +15,6 @@
 - fix: convert PulseAudio config files to LF line endings
 - docs: add BUFFER_SECONDS to environment variables table
 - feat: add System Settings modal with buffer size slider
-- feat: add GET/PUT /api/settings/buffer endpoint
-- feat: add GlobalSettings model and settings.yaml persistence
 
 > WARNING: This is a development build. For stable releases, use the stable add-on.
 <!-- VERSION_INFO_END -->
